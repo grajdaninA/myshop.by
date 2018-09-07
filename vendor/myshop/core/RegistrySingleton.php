@@ -9,13 +9,12 @@
 namespace myshop;
 
 /**
- * Description of RegistrySingelton
+ * RegistrySingelton
  *
  * @author grajdanin
  */
 class RegistrySingleton {
     
-    /* @return RegistrySingleton */
     use SingletonTrait;
     
     private static $properties = [];

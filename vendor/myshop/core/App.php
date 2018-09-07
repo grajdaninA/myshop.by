@@ -14,7 +14,8 @@ namespace myshop;
  * @author grajdanin
  */
 class App {
-     
+    
+    /** @var RegistrySingleton */
     public static $registry;
 
     public function __construct() {

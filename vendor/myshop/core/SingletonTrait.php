@@ -15,7 +15,8 @@ namespace myshop;
 trait SingletonTrait {
     
     private static $instance;
-   
+    
+    /** @return object */
     public static function getInstance(){
         if (self::$instance === NULL) {
             self::$instance = new self;
