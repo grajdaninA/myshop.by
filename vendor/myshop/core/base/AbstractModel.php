@@ -20,6 +20,6 @@ abstract class AbstractModel {
     public $rules = [];
     
     public function __construct() {
-        
+        \myshop\DbSingleton::getInstance();
     }
 }

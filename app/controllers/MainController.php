@@ -16,10 +16,11 @@ namespace app\controllers;
 class MainController extends AppController {
       
     public function indexAction() {
+        $names = \R::findAll('newtable');
         $this->setMeta(\myshop\App::$registry->getProperty('shop_name'), 
                 $desc = 'описание', $keywords = 'ключевые');
         $holop = 'holop # 2340';
         $time = time();
-        $this->setData(compact('holop', 'time'));
+        $this->setData(compact('holop', 'time', 'names'));
     }
 }

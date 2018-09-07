@@ -14,5 +14,10 @@ namespace app\controllers;
  * @author grajdanin
  */
 class AppController extends \myshop\base\AbstractController {
-    //put your code here
+    
+    public function __construct($route) {
+        parent::__construct($route);
+        new \app\models\AppModels();
+    }
+    
 }
