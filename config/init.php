@@ -8,7 +8,7 @@ define("WWW", ROOT . "/public");
 define("APP", ROOT . "/app");
 define("CORE", ROOT . "/vendor/myshop/core");
 define("LIBS", ROOT . "/vendor/myshop/libs");
-define("CASHE", ROOT . "/tmp/cashe");
+define("CACHE", ROOT . "/tmp/cache");
 define("LAYOUT", "default");
 define("COMPOSER", ROOT . "/vendor");
 define("CONF", ROOT . "/config");

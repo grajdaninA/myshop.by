@@ -26,7 +26,7 @@ class App {
         new ShopException();
         Router::dispatch($query);
     }
-    
+            
     protected function setParams(){
         $params = require_once CONF. '/params.php';
         if(!empty($params)){

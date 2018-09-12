@@ -1,8 +1,9 @@
 <div>Main Page</div>
 <div>
-    <?=$holop;?>
+    <?php
+        foreach ($news['data'] as $element){
+            echo $element . PHP_EOL;
+        }
+    ?>
     <?=$time;?>
-    <?php foreach ($names as $name) { ?>
-    <h3><?=$name->name;?></h3>
-    <?php } ?>
 </div>
