@@ -9,7 +9,7 @@ define("APP", ROOT . "/app");
 define("CORE", ROOT . "/vendor/myshop/core");
 define("LIBS", ROOT . "/vendor/myshop/libs");
 define("CACHE", ROOT . "/tmp/cache");
-define("LAYOUT", "default");
+define("LAYOUT", "watches");
 define("COMPOSER", ROOT . "/vendor");
 define("CONF", ROOT . "/config");
 

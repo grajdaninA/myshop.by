@@ -91,9 +91,9 @@ class Router {
     
     protected static function removeQueryString($url){
         if ($url) {
-            $getParams = explode('$', $url, 2);
+            $getParams = explode('&', $url, 2);
             if (strpos($getParams[0], '=') === FALSE) {
-                return rtrim($getParams, '/');
+                return rtrim($getParams[0], '/');
             } else {
                 return '';
             }
