@@ -2,6 +2,10 @@
 
 use myshop\Router;
 
+//rotes for users
+Router::addRoute('^product/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Product',
+    'action' => 'view']);
+
 //default routes for admins
 Router::addRoute('^admin$', ['controller' => 'Main', 'action' => 'index', 
     'prefix' => 'admin']);

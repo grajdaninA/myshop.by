@@ -43,4 +43,25 @@ abstract class AbstractController {
                 $this->layout, $this->view);
         $viewObj->render($this->data);
     }
+    
+    public function isAjax(){
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && 
+                $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+    }
+    
+    public function loadView($view, $vars = []){
+        extract($vars);
+        require APP . "/views/{$this->prefix}{$this->controller}/{$view}.php";
+        die;
+    }
+    
+    public function redirect($http = FALSE){
+        if ($http){
+            $redirect = $http;
+        } else {
+            $redirect = !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : URL;
+        }
+        header("Location: $redirect");
+        die;
+    }
 }

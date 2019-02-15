@@ -1,45 +1,79 @@
- <div class="main">
+ 
+<div class="main">
+<!--container of Brands-->
+    <?php if($brands): ?>
     <div class="container">
     	<ul class="content-home">
-           <li class="col-sm-4">
+            <?php foreach ($brands as $brand): ?>
+            <li class="col-sm-4">
               <a href="single.html" class="item-link" title="">
                 <div class="bannerBox">
-                   <img src="images/w1.jpg" class="item-img" title="" alt="" width="100%" height="100%">
+                    <img src="images/<?= $brand->img;?>" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
-                      <h3>Men's<span>Watches</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                      <h2><?= $brand->title; ?></h2>
+                      <p><?= $brand->description;?></p>
                       <button>Shop now!</button>
                    </div>
                 </div>
               </a>
-           </li>
-           <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
-                <div class="bannerBox">
-                   <img src="images/w3.jpg" class="item-img" title="" alt="" width="100%" height="100%">
-                   <div class="item-html">
-                      <h3>Men's<span>Watches</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                      <button>Shop now!</button>
-                   </div>
-                </div>
-              </a>
-           </li>
-           <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
-                <div class="bannerBox">
-                   <img src="images/w2.jpg" class="item-img" title="" alt="" width="100%" height="100%">
-                   <div class="item-html">
-                      <h3>Women's<span>Watches</span></h3>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                      <button>Shop now!</button>
-                   </div>
-                </div>
-              </a>
-           </li> 
-           <div class="clearfix"> </div>         
+            </li>
+           <?php endforeach;?>
+           <div class="clearfix"> </div>
+
        </ul>
     </div>
+    <?php endif;?>
+<!--product-begin-->
+    <?php if($hits): ?>
+    <?php $curr = \myshop\App::$registry->getProperty('currency')?>
+        <div class="col-md-12 mens_right">
+            <div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid-custom">
+                <div class="clearfix"></div>
+		<ul>
+                    <?php foreach ($hits as $hit):?>
+                    <li class="simpleCart_shelfItem">
+                        <a class="cbp-vm-image" href="product/<?= $hit->alias; ?>"> </a>
+                            <div class="view view-first">
+                                <a class="cbp-vm-image" href="product/<?= $hit->alias; ?>">  </a>
+                                    <div class="inner_content clearfix">
+                                        <a class="cbp-vm-image" href="product/<?= $hit->alias; ?>"> </a>
+                                            <div class="product_image">
+                                                <a class="cbp-vm-image" href="product/<?= $hit->alias; ?>">
+                                                    <div class="mask1"><img src="images/<?= $hit->img; ?>" alt="image" class="img-responsive zoom-img"></div>
+							<div class="mask">
+                                                            <div class="info">Quick View</div>
+					                </div>
+					        </a>
+                                                <div class="product_container">
+                                                    <a class="cbp-vm-image" href="product/<?= $hit->alias; ?>">
+							<h4><?= $hit->title; ?></h4>
+							<p><?= $hit->description; ?></p>
+							<div class="price mount item_price">
+                                                            <?= $curr['symbol_left'];?>
+                                                            <?= $hit->price * $curr['value']; ?>
+                                                            <?= $curr['symbol_right'];?>
+                                                            <?php if($hit->old_price):?>
+                                                                <del><?= $curr['symbol_left'];?>
+                                                                    <?= $hit->old_price * $curr['value']; ?>
+                                                                    <?= $curr['symbol_right'];?>
+                                                                </del>
+                                                            <?php endif; ?>
+                                                        </div>                                                        
+                                                    </a>
+                                                    <a data-id="<?= $hit->id; ?>" class="button add-to-cart-link cbp-vm-icon cbp-vm-add" href="cart/add?id=<?= $hit->id; ?>">Add to cart</a>
+						</div>		
+                                            </div>
+			            </div>
+                            </div>
+		    </li>
+                    <?php endforeach; ?>
+		</ul>
+            </div>
+	</div>
+    <?php endif; ?>
+<!--product-end-->
+
+<!-- Conteiner skoken baba -->
     <div class="middle_content">
     	<div class="container">
     		<h2>Welcome</h2>
