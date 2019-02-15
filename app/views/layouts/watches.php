@@ -70,19 +70,30 @@
                 <div class="search-box">
                     <div id="sb-search" class="sb-search">
                         <form action="search" method="get" autocomplete="off">
-                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+                            <input class="sb-search-input typeahead" placeholder="Enter your search term..." type="search" name="s" id="typeahead">
                             <input class="sb-search-submit" type="submit" value="">
                             <span class="sb-icon-search"></span>
                             
                         </form>
                     </div>
                 </div>
+                
+<!--                <div class="">
+                    <div id="" class="">
+                        <form action="search" method="get" autocomplete="off">
+                            <input class="typeahead" placeholder="Enter your search term..." type="search" name="s" id="typeahead">
+                            <input class="" type="submit" value="">
+                            <span class="sb-icon-search"></span>
+                            
+                        </form>
+                    </div>
+                </div>-->
                
-<!--                <script src="js/classie1.js"></script>
+                <script src="js/classie1.js"></script>
                 <script src="js/uisearch.js"></script>
                 <script>
                     new UISearch( document.getElementById( 'sb-search' ) );
-                </script>-->
+                </script>
                 
                 <div class="clearfix"> </div>
                 </div>
@@ -177,6 +188,13 @@
       });
     });
 </script>
+<?php
+$logs = \R::getDatabaseAdapter()
+    ->getDatabase()
+    ->getLogger();
+
+debug( $logs->grep( 'SELECT' ) );
+?>
 </body>
 
 </html>		
