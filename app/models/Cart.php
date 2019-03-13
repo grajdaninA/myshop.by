@@ -8,8 +8,6 @@
 
 namespace app\models;
 
-use myshop\App;
-
 /**
  * Description of Cart
  *

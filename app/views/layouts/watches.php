@@ -32,7 +32,8 @@
 </head>
 <body>
     <?php $curr = \myshop\App::$registry->getProperty('currency'); ?>
-    <div class="<?=$class_banner?>">
+    <?php if (!isset($class_banner)): $class_banner = "men_banner"; endif; ?>
+    <div class="<?=$class_banner;?>">
         <div class="container">
             <div class="header_top">
    	  	<div class="header_top_left">
@@ -53,49 +54,47 @@
                     </a>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="header_top_right">
-                <div class="lang_list">
-                    <select id="currency" class="dropdown" tabindex="4">
-                            <?php new app\widgets\currency\Currency() ?>
-                    </select>
-                </div>
-                <ul class="header_user_info">
-                    <a class="login" href="login.html">
-                        <i class="user"> </i> 
-                        <li class="user_desc">My Account</li>
-                    </a>
+                <div class="header_top_right">                  
+                    <div class="lang_list">
+                        <select id="currency" class="dropdown" tabindex="4">
+                                <?php new app\widgets\currency\Currency() ?>
+                        </select>
+                    </div>
+                    <!-- Login & singup -->
+
+                    <div class="header_user_info btn-group">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="user"></i>my account
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php if (isset($_SESSION['user'])):?>
+                            <li><a href="#">Hi, <?= $_SESSION['user']['name']?></a></li>
+                            <li><a href="user/logout">Logout</a></li>
+                            <?php else:?>
+                            <li><a href="user/login">Login</a></li>
+                            <li><a href="user/signup">Singup</a></li>
+                            <?php endif;?>                     
+                        </ul>
+                    </div>
+
+                    <!-- start search-->
+                    <div class="search-box">
+                        <div id="sb-search" class="sb-search">
+                            <form action="search" method="get" autocomplete="off">
+                                <input class="sb-search-input typeahead" placeholder="Enter your search term..." type="search" name="s" id="typeahead">
+                                <input class="sb-search-submit" type="submit" value="">
+                                <span class="sb-icon-search"></span>
+                            </form>
+                        </div>
+                    </div>             
+                    <script src="js/classie1.js"></script>
+                    <script src="js/uisearch.js"></script>
+                    <script>
+                        new UISearch( document.getElementById( 'sb-search' ) );
+                    </script>
+
                     <div class="clearfix"> </div>
-                </ul>
-                <!-- start search-->
-                <div class="search-box">
-                    <div id="sb-search" class="sb-search">
-                        <form action="search" method="get" autocomplete="off">
-                            <input class="sb-search-input typeahead" placeholder="Enter your search term..." type="search" name="s" id="typeahead">
-                            <input class="sb-search-submit" type="submit" value="">
-                            <span class="sb-icon-search"></span>
-                            
-                        </form>
-                    </div>
-                </div>
-                
-<!--                <div class="">
-                    <div id="" class="">
-                        <form action="search" method="get" autocomplete="off">
-                            <input class="typeahead" placeholder="Enter your search term..." type="search" name="s" id="typeahead">
-                            <input class="" type="submit" value="">
-                            <span class="sb-icon-search"></span>
-                            
-                        </form>
-                    </div>
-                </div>-->
-               
-                <script src="js/classie1.js"></script>
-                <script src="js/uisearch.js"></script>
-                <script>
-                    new UISearch( document.getElementById( 'sb-search' ) );
-                </script>
-                
-                <div class="clearfix"> </div>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -189,11 +188,11 @@
     });
 </script>
 <?php
-$logs = \R::getDatabaseAdapter()
-    ->getDatabase()
-    ->getLogger();
-
-debug( $logs->grep( 'SELECT' ) );
+//$logs = \R::getDatabaseAdapter()
+//    ->getDatabase()
+//    ->getLogger();
+//
+//debug( $logs->grep( 'SELECT' ) );
 ?>
 </body>
 

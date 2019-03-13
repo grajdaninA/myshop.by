@@ -6,6 +6,9 @@ use myshop\Router;
 Router::addRoute('^product/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Product',
     'action' => 'view']);
 
+Router::addRoute('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category',
+    'action' => 'view']);
+
 //default routes for admins
 Router::addRoute('^admin$', ['controller' => 'Main', 'action' => 'index', 
     'prefix' => 'admin']);

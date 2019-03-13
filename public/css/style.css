@@ -254,7 +254,7 @@ p.empty a {
 	background:#ee4a02;
 	color: #fff;
 }
-ul.header_user_info {
+div.header_user_info {
 	float: left;
 	border-right: 1px solid #555;
 	width:50%;
@@ -921,7 +921,7 @@ a.create:hover, .account-top input[type="submit"]:hover, .register-but form inpu
 .register-but{
 	margin-top:1em;
 }
-.register-but form input[type="submit"] {
+.register-but input[type="submit"] {
 	background:#F9D9BE;
 	color: #000;
 	font-size:1em;
@@ -1158,7 +1158,7 @@ ul.breadcrumbs li {
 	margin: 0;
 }
 ul.women_pagenation.dc_paginationA.dc_paginationA06 {
-	float:right;
+/*	float:right;*/
 	padding:0;
 	list-style:none;
 }
@@ -1197,6 +1197,7 @@ ul.women_pagenation li a {
 ul.women_pagenation li.active a{
 	background:#F9D9BE;
 	color:#000;
+        border-color: lightgrey;
 }
 ul.women_pagenation li a:hover{
 	background:#F0B889;

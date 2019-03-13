@@ -22,4 +22,17 @@ abstract class AbstractModel {
     public function __construct() {
         \myshop\DbSingleton::getInstance();
     }
+    
+    /** The Method load Desc 
+     * @param array $data Desc 
+     * @return void
+     **/
+            
+    public function load($data){
+        foreach ($this->attributes as $name => $value){
+            if (isset($data[$name])) {
+                $this->attributes[$name] = $data[$name];
+            }
+        }
+    }
 }

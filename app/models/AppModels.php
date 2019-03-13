@@ -3,6 +3,8 @@
 namespace app\models;
 
 use myshop\base\AbstractModel;
+use myshop\App;
+
 /**
  * Description of AppModels
  *
