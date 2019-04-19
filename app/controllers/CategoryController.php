@@ -40,6 +40,12 @@ class CategoryController extends AppController{
         
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = App::$registry->getProperty('pagination');
+        
+        if ($this->isAjax()) {
+            debug($_GET);
+            die();
+        }
+        
         $count = \R::count('product', $query);
         $pagination = new Pagination($page, $perpage, $count);
         

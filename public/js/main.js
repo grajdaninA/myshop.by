@@ -129,3 +129,35 @@ $('#mods').on('change', function(){
         $('#base-price').text(symbolLeft + basePrice + ' ' + symbolRight);
     }
 });
+
+// Filters
+$('body').on('change', '#filters input', function(){
+    var checked = $('#filters input:checked'),
+        data = '';
+    checked.each(function(){
+        data += this.value + ',';
+    })
+    if (data){
+        $.ajax({
+           url: location.href,
+           data: {filter: data},
+           type: 'GET',
+           beforeSend: function(){
+               $('.preloader').fadeIn(300, function(){
+                   $("#products").hide();
+               });
+           },
+           success: function(res){
+               $('.preloader').delay(500).fadeOut('slow', function(){
+                  $('#products').html(res).fadeIn(); 
+               });
+           },
+           error: function(){
+               
+           },
+        });
+    } else {
+        window.location = location.pathname;
+    }
+    console.log(data);
+});

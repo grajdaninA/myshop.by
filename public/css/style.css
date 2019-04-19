@@ -2793,7 +2793,8 @@ a.b-home {
 
 /*users styles*/
 
-#cart table img{
+#cart table img,
+.cart table img {
     height: 50px;
 }
 
@@ -2913,7 +2914,59 @@ form .has-error .form-control{
 .has-error, .has-success{
 	position: relative;
 }
+
+/* sing in & sing up */
+
+div.alert ul li{
+    list-style-type: none;
+}
+
 .form-control-feedback {
-	right: 10px;
-	top: 25px;
+    right: 20px;
+    top: 28px;
+}
+
+.form-control-feedback, .login-sp{
+    right: 0px;
+    top: 25px;
+}
+
+.checkbox i.filter {
+	top: 5px;
+}
+
+label.checkbox{
+    font-weight:  lighter;
+} 
+/* for grid 3xProduct (max col-md-10)*/
+.cbp-vm-view-grid-custom-col-md-10 ul li {
+	  width: 23%;
+          left: 10%;
+	  text-align: center;
+	  margin: 2% 2% 0 0;
+	  display: inline-block;
+	  min-height: 380px;
+	  vertical-align: top;
+	  border: 1px solid #f0f0f0;
+	  padding: 5px;
+}
+
+/* preloder */
+
+.preloader{
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	z-index:9999;
+	background-color:#fefefe;
+	opacity: .7;
+	display: none;
+}
+.preloader img{
+	position:relative;
+	left:50%;
+	top:50vh;
+	margin:-100px 0 0 -100px;
 }

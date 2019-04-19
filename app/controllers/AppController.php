@@ -13,6 +13,7 @@ use myshop\App;
 use app\widgets\currency\Currency;
 use myshop\base\AbstractController;
 use myshop\CacheSingleton;
+use app\models\User;
 /**
  * Description of App
  *
@@ -38,6 +39,31 @@ class AppController extends AbstractController {
             $cache->set('cats', $cats);
         }
         return $cats;
+    }
+    
+    /** The Method "registerUser" new user data's checks and saves to the db 
+     * @param array $data new user data's (login, password ...) 
+     * @return integer $user_id new user id's after saving to the db
+     **/
+    public function registerUser($data) {
+        $user = new User();
+        $user->load($data);
+        if (!$user->validate($data) || !$user->chechUniquie()) {
+            $user->getErrors();
+            $_SESSION['form_data'] = $data;
+        } else {
+            $user->attributes['password'] = 
+                    password_hash($user->attributes['password'], 
+                            PASSWORD_DEFAULT);
+            $user_id = $user->save('user');
+            if ($user_id) {
+                $_SESSION['success'] = 'OK';
+                $user->login($data['login'], $data['password']);
+            } else {
+                $_SESSION['errors'] = 'ошибка!';
+            }
+        }
+        return $user_id;
     }
     
 }

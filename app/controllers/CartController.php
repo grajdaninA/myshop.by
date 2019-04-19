@@ -9,6 +9,8 @@
 namespace app\controllers;
 
 use app\models\Cart;
+use app\models\User;
+use app\models\Order;
 /**
  * Description of cartController
  *
@@ -16,6 +18,9 @@ use app\models\Cart;
  */
 
 class CartController extends AppController{
+    
+    /** The Method "addAction" adds peace or peaces in cart 
+     **/
     
     public function addAction(){
         $id = !empty($_GET['id']) ? (int)$_GET['id'] : NULL;
@@ -37,9 +42,15 @@ class CartController extends AppController{
         $this->redirect();
     }
     
+    /** The Method "showAction" views cart's modal window 
+     **/
+    
     public function showAction(){
         $this->loadView('cart_modal');
     }
+    
+    /** The Method "deleteAction" removes 1 peace from cart 
+     **/
     
     public function deleteAction(){
         $id = !empty($_GET['id']) ? $_GET['id'] : NULL;
@@ -47,8 +58,14 @@ class CartController extends AppController{
             $cart = new Cart();
             $cart->deleteItem($id);
         }
-        $this->loadView('cart_modal');
+        if($this->isAjax()){
+            $this->loadView('cart_modal');
+        }
+        $this->redirect();
     }
+    
+    /** The Method "clearAction" clears cart 
+     **/
     
     public function clearAction(){
         unset($_SESSION['cart']);
@@ -56,6 +73,38 @@ class CartController extends AppController{
         unset($_SESSION['cart.qty']);
         unset($_SESSION['cart.currency']);
         $this->loadView('cart_modal');
+    }
+    
+    /** The Method "viewAction" views checkout page 
+     **/
+    
+    public function viewAction() {
+        $this->setMeta('Cart');
+    }
+    
+    /** The Method checkoutAction Desc  
+     * @return type variable2 Desc
+     **/
+    public function checkoutAction() {
+        if(!empty($_POST)){
+            // registration
+            if(!User::checkAuth()){
+                if(!$user_id = $this->registerUser($_POST)){
+                    $this->redirect();
+                }
+            }
+            //save order
+            $data['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
+            $data['note'] = !empty($_POST['note']) ? $_POST['note'] : '';
+            $data['currency'] = \myshop\App::$registry->getProperty('currency')['code'];
+            $user_email = isset($_SESSION['user']['email']) ? 
+                    $_SESSION['user']['email'] : $_POST['email'];
+            $order = new Order();
+            $order->load($data);
+            $order_id = $order->saveOrder();
+            $order->mailOrder($order_id, $user_email);
+        }
+        $this->redirect();
     }
     
 }

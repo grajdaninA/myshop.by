@@ -25,6 +25,7 @@
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/validator.js" type="text/javascript"></script>
     <!-- typeahead for search -->
     <script src="js/typeahead.bundle.js" type="text/javascript"></script>
     <script src="js/jquery.easydropdown.js"></script>
@@ -166,7 +167,7 @@
 </div>
 
 
-
+<div class="preloader"><img src="images/ring.svg"></div>
     
 
 <script>
